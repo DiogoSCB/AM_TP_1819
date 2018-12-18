@@ -34,43 +34,51 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:layout_margin="4dp"
         android:gravity="center|center_horizontal"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
             <Button
-                android:id="@+id/btnPlay"
+                android:id="@+id/btnSinglePlayer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="24dp"
-                android:paddingEnd="64dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="36dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="24dp"
-                android:drawableEnd="@drawable/play"
-                android:onClick="onPlay"
-                android:text="@string/play"
-                android:textSize="28sp"
-                android:visibility="visible" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:drawableEnd="@drawable/play2"
+                android:onClick="onSinglePlayer"
+                android:text="@string/singleplayer"
+                android:textSize="24sp"
+                android:backgroundTint="#f2f2f2"
+                android:shadowColor="@color/verde"/>
+            <Button
+                android:id="@+id/btnMultiPlayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="0dp"
+                android:paddingEnd="36dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:drawableEnd="@drawable/multiplayer"
+                android:onClick="onMultiPlayer"
+                android:text="@string/multiplayer"
+                android:textSize="24sp"
+                android:visibility="visible"
+                android:backgroundTint="#f2f2f2"/>
             <Button
                 android:id="@+id/btnProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="24dp"
-                android:paddingEnd="64dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="36dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="24dp"
                 android:drawableEnd="@drawable/profile"
                 android:onClick="onProfile"
                 android:text="@string/profilesCaps"
-                android:textSize="28sp"
-                android:visibility="visible"/>
-        </LinearLayout>
+                android:textSize="24sp"
+                android:visibility="visible"
+                android:backgroundTint="#f2f2f2"/>
     </LinearLayout>
 </LinearLayout>

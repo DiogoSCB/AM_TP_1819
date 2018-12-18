@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".Menu.CreditsActivity" />
         <activity android:name=".Profiles.ProfileActivity" />
-        <activity android:name=".Profiles.AddUserActivity"></activity>
+        <activity android:name=".Profiles.AddUserActivity" />
+        <activity android:name=".Menu.MultiplayerActivity"></activity>
     </application>
 
 </manifest>

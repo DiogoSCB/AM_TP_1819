@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">Reversi</string>
     <string name="action_settings">Settings</string>
-    <string name="play">PLAY</string>
     <string name="profilesCaps">PROFILES</string>
     <string name="profiles">Profiles</string>
     <string name="credits">Credits</string>
     <string name="addUser">Add User</string>
     <string name="picture">Picture:</string>
     <string name="takePicture">Take a Picture</string>
+    <string name="multiplayer">Multiplayer</string>
+    <string name="singleplayer">SinglePlayer</string>
+    <string name="online">Online</string>
+    <string name="local">Local</string>
+    <string name="noProfiles">There are no profiles.</string>
 </resources>

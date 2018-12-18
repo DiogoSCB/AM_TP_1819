@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import amov1819.reversiisec.Profiles.ProfileActivity;
@@ -21,10 +22,17 @@ public class MainActivity extends AppCompatActivity {
 
         Typeface font = Typeface.createFromAsset(getAssets(), "font/Bungee-Regular.ttf");
         ((TextView)findViewById(R.id.tvNome)).setTypeface(font);
+        ((Button)findViewById(R.id.btnSinglePlayer)).setTypeface(font);
+        ((Button)findViewById(R.id.btnMultiPlayer)).setTypeface(font);
+        ((Button)findViewById(R.id.btnProfile)).setTypeface(font);
     }
 
-    public void onPlay(View view) {
+    public void onSinglePlayer(View view) {
         Intent intent = new Intent(this,CreditsActivity.class);
+        startActivity(intent);
+    }
+    public void onMultiPlayer(View view) {
+        Intent intent = new Intent(this,MultiplayerActivity.class);
         startActivity(intent);
     }
     public void onProfile(View view) {
