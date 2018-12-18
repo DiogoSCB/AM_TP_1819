@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="amov1819.reversiisec">
 
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-feature android:name="android.hardware.camera2" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +23,8 @@
         <activity android:name=".Menu.CreditsActivity" />
         <activity android:name=".Profiles.ProfileActivity" />
         <activity android:name=".Profiles.AddUserActivity" />
-        <activity android:name=".Menu.MultiplayerActivity"></activity>
+        <activity android:name=".Menu.MultiplayerActivity" />
+        <activity android:name=".Profiles.TakePictureActivity"></activity>
     </application>
 
 </manifest>

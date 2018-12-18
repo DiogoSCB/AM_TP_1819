@@ -12,4 +12,5 @@
     <string name="online">Online</string>
     <string name="local">Local</string>
     <string name="noProfiles">There are no profiles.</string>
+    <string name="insertName">Name:</string>
 </resources>
