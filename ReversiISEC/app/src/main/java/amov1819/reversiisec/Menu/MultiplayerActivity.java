@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.Objects;
 
+import amov1819.reversiisec.Game.GameActivity;
 import amov1819.reversiisec.R;
 
 public class MultiplayerActivity extends AppCompatActivity {
@@ -28,12 +29,12 @@ public class MultiplayerActivity extends AppCompatActivity {
     }
 
     public void onLocal(View view) {
-        Intent intent = new Intent(this,MultiplayerActivity.class);
+        Intent intent = new Intent(this,GameActivity.class);
         startActivity(intent);
     }
 
     public void onOnline(View view) {
-        Intent intent = new Intent(this,MultiplayerActivity.class);
+        Intent intent = new Intent(this,GameActivity.class);
         startActivity(intent);
     }
 

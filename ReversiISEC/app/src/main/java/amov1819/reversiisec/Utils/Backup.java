@@ -19,11 +19,11 @@ import amov1819.reversiisec.R;
 public class Backup {
 
     private String fileName = "Users.txt";
-    private String folderName = "Reversi";
     private File file;
     private File folder;
 
     public Backup() {
+        String folderName = "Reversi";
         folder = new File(Environment.getExternalStorageDirectory() + File.separator + folderName);
         if (!folder.exists()) {
             folder.mkdirs();
@@ -78,7 +78,7 @@ public class Backup {
 
             is.close();
             fis.close();
-        } catch(EOFException e) {            
+        } catch(EOFException ignored) {
         } catch (Exception e) {
             profiles = new ArrayList<>();
         }
@@ -87,8 +87,7 @@ public class Backup {
     }
 
     public User loadSelectedProfile() {
-        User profile = null;
-
+        User profile;
         String filePathString = folder + File.separator + fileName;
         file = new File(filePathString);
 
@@ -97,22 +96,17 @@ public class Backup {
             fis = new FileInputStream(file);
             ObjectInputStream is = new ObjectInputStream(fis);
 
-            int size = (int) is.readObject();
-
-            for(int i = 0; i < size; i++) {
-                User profileAux = (User) is.readObject();
-                if(profileAux.isSelected())
-                {
-                    profile = profileAux;
-                    break;
+            while((profile = (User)is.readObject()) != null) {
+                if(profile.isSelected()){
+                    return profile;
                 }
             }
             is.close();
             fis.close();
         } catch(Exception e) {
-            Log.d("getSelectedProfile", "Error loading selected profile. Error: " + e);
+            Log.d("ERROR", "Error loading selected profile. Error: " + e);
             return null;
         }
-        return profile;
+        return null;
     }
 }

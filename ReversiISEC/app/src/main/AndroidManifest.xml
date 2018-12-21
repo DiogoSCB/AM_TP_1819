@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="amov1819.reversiisec">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="READ_EXTERNAL_STORAGE" />
+
     <uses-feature android:name="android.hardware.camera2" />
 
     <application
@@ -25,7 +26,8 @@
         <activity android:name=".Profiles.ProfileActivity" />
         <activity android:name=".Profiles.AddUserActivity" />
         <activity android:name=".Menu.MultiplayerActivity" />
-        <activity android:name=".Utils.TakePictureActivity"></activity>
+        <activity android:name=".Utils.TakePictureActivity" />
+        <activity android:name=".Game.GameActivity"></activity>
     </application>
 
 </manifest>

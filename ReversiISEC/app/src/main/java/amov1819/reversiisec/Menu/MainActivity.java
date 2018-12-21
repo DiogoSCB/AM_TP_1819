@@ -7,16 +7,24 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import amov1819.reversiisec.Game.GameActivity;
 import amov1819.reversiisec.Profiles.ProfileActivity;
+import amov1819.reversiisec.Profiles.User;
 import amov1819.reversiisec.R;
+import amov1819.reversiisec.Utils.Backup;
 
 public class MainActivity extends AppCompatActivity {
+
+    User user;
+    Backup backup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +48,32 @@ public class MainActivity extends AppCompatActivity {
                     PackageManager.PERMISSION_GRANTED)
                 requestPermissions(new String[]{Manifest.permission.CAMERA},1);
         }
+
+        backup = new Backup();
     }
 
     public void onSinglePlayer(View view) {
-        Intent intent = new Intent(this,CreditsActivity.class);
+        Intent intent;
+        user = backup.loadSelectedProfile();
+
+        if(user == null) {
+            intent = new Intent(this, ProfileActivity.class);
+            Toast.makeText(this, "First need to choose/create a profile.", Toast.LENGTH_LONG).show();
+        } else {
+            intent = new Intent(this, GameActivity.class);
+        }
         startActivity(intent);
     }
     public void onMultiPlayer(View view) {
-        Intent intent = new Intent(this,MultiplayerActivity.class);
+        Intent intent;
+        user = backup.loadSelectedProfile();
+
+        if(user == null) {
+            intent = new Intent(this, ProfileActivity.class);
+            Toast.makeText(this, "First need to choose/create a profile.", Toast.LENGTH_LONG).show();
+        } else {
+            intent = new Intent(this, MultiplayerActivity.class);
+        }
         startActivity(intent);
     }
     public void onProfile(View view) {
