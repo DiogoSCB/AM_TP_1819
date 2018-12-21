@@ -29,6 +29,6 @@
         android:id="@+id/ivTakePicture"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ccc"
+        android:background="#ddd"
         android:contentDescription="@string/takePicture"/>
 </LinearLayout>

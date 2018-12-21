@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center|bottom"
-    tools:context=".Profiles.TakePictureActivity">
+    tools:context=".Utils.TakePictureActivity">
 
     <TextureView
         android:id="@+id/cameraPreview"
@@ -14,10 +14,10 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
     <ImageButton
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/camera"
         android:contentDescription="@string/takePicture"
-        android:backgroundTint="@android:color/transparent"
-        android:id="@+id/ibCapture"/>
+        android:backgroundTint="#fff"
+        android:onClick="onCapture"/>
 </LinearLayout>
