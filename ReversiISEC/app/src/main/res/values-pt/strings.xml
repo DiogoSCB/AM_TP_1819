@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Reversi</string>
+    <string name="action_settings">Configurações</string>
+    <string name="profilesCaps">PERFIS</string>
+    <string name="profiles">Perfis</string>
+    <string name="credits">Créditos</string>
+    <string name="addUser">Adicionar Utilizador</string>
+    <string name="picture">Fotografia:</string>
+    <string name="takePicture">Tirar uma Foto</string>
+    <string name="multiplayer">Multijogador</string>
+    <string name="singleplayer">Um Jogador</string>
+    <string name="online">Online</string>
+    <string name="local">Local</string>
+    <string name="noProfiles">Não existe nenhum perfil.</string>
+    <string name="insertName">Nome:</string>
+    <string name="made_by">Feito por: Diogo Branco e João Oliveira</string>
+    <string name="teacher">Professor: Álvaro Santos</string>
+    <string name="isec">ISEC - Arquiteturas Móveis 2018/2019</string>
+    <string name="enter_your_name">Escreva o seu nome.</string>
+</resources>

@@ -4,7 +4,10 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
+import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
@@ -15,6 +18,7 @@ import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
+import android.media.ExifInterface;
 import android.media.Image;
 import android.media.ImageReader;
 import android.os.Bundle;
@@ -31,6 +35,7 @@ import android.view.MenuItem;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -60,15 +65,6 @@ public class TakePictureActivity extends AppCompatActivity {
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
     private Handler procMsg;
-    private Backup backup;
-
-    private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
-    static {
-        ORIENTATIONS.append(Surface.ROTATION_0, 270);
-        ORIENTATIONS.append(Surface.ROTATION_90, 0);
-        ORIENTATIONS.append(Surface.ROTATION_180, 270);
-        ORIENTATIONS.append(Surface.ROTATION_270, 180);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +77,6 @@ public class TakePictureActivity extends AppCompatActivity {
         assert textureView != null;
         textureView.setSurfaceTextureListener(textureListener);
 
-        backup = new Backup();
         procMsg = new Handler();
     }
 
@@ -165,11 +160,8 @@ public class TakePictureActivity extends AppCompatActivity {
             final CaptureRequest.Builder captureBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
             captureBuilder.addTarget(reader.getSurface());
             captureBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
-            // Orientation
-            int rotation = getWindowManager().getDefaultDisplay().getRotation();
-            captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
 
-            file = new File(backup.getFolderPath() + File.separator + UUID.randomUUID().toString()+".jpg");
+            file = new File(Backup.getFolderPath() + File.separator + UUID.randomUUID().toString()+".jpg");
             ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
                 @Override
                 public void onImageAvailable(ImageReader reader) {
@@ -188,11 +180,26 @@ public class TakePictureActivity extends AppCompatActivity {
                         }
                     }
                 }
-                private void save(byte[] bytes) throws IOException {
+                private void save(byte[] data) throws IOException {
                     OutputStream output = null;
                     try {
                         output = new FileOutputStream(file);
-                        output.write(bytes);
+
+                        Bitmap realImage = BitmapFactory.decodeByteArray(data, 0, data.length);
+
+                        ExifInterface exif = new ExifInterface(file.toString());
+                        if(exif.getAttribute(ExifInterface.TAG_ORIENTATION).equalsIgnoreCase("6")){
+                            realImage = rotate(realImage, 90);
+                        } else if(exif.getAttribute(ExifInterface.TAG_ORIENTATION).equalsIgnoreCase("8")){
+                            realImage = rotate(realImage, 270);
+                        } else if(exif.getAttribute(ExifInterface.TAG_ORIENTATION).equalsIgnoreCase("3")){
+                            realImage = rotate(realImage, 180);
+                        } else if(exif.getAttribute(ExifInterface.TAG_ORIENTATION).equalsIgnoreCase("0")){
+                            realImage = rotate(realImage, 90);
+                        }
+
+                        boolean bo = realImage.compress(Bitmap.CompressFormat.JPEG, 100, output);
+                        Log.d("Info", bo + "");
                     } finally {
                         if (null != output) {
                             output.close();
@@ -200,6 +207,7 @@ public class TakePictureActivity extends AppCompatActivity {
                     }
                 }
             };
+
             reader.setOnImageAvailableListener(readerListener, mBackgroundHandler);
             final CameraCaptureSession.CaptureCallback captureListener = new CameraCaptureSession.CaptureCallback() {
                 @Override
@@ -233,6 +241,17 @@ public class TakePictureActivity extends AppCompatActivity {
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    public Bitmap rotate(Bitmap bitmap, int degree) {
+        int w = bitmap.getWidth();
+        int h = bitmap.getHeight();
+
+        Matrix mtx = new Matrix();
+        //       mtx.postRotate(degree);
+        mtx.setRotate(degree);
+
+        return Bitmap.createBitmap(bitmap, 0, 0, w, h, mtx, true);
     }
 
     protected void createCameraPreview() {

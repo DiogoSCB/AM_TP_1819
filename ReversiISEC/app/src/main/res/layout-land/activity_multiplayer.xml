@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".Menu.MultiplayerActivity">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvLocal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/local"
+            android:textAlignment="center"
+            android:textSize="32sp"
+            android:paddingTop="20dp"/>
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/local"
+            android:cropToPadding="true"
+            android:contentDescription="@string/local"
+            android:backgroundTint="#fafafa"
+            android:onClick="onLocal"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvOnline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/online"
+            android:textAlignment="center"
+            android:textSize="32sp"
+            android:paddingTop="20dp"/>
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/online"
+            android:cropToPadding="true"
+            android:contentDescription="@string/online"
+            android:backgroundTint="#fafafa"
+            android:onClick="onOnline"/>
+    </LinearLayout>
+</LinearLayout>

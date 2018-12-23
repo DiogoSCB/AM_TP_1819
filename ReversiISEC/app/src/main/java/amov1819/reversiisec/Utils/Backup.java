@@ -18,11 +18,11 @@ import amov1819.reversiisec.R;
 
 public class Backup {
 
-    private String fileName = "Users.txt";
-    private File file;
-    private File folder;
+    private static String fileName = "Users.txt";
+    private static File file;
+    private static File folder;
 
-    public Backup() {
+    public static void makeFolder(){
         String folderName = "Reversi";
         folder = new File(Environment.getExternalStorageDirectory() + File.separator + folderName);
         if (!folder.exists()) {
@@ -30,11 +30,12 @@ public class Backup {
         }
     }
 
-    public String getFolderPath() {
+    public static String getFolderPath() {
+        if(folder == null) makeFolder();
         return folder.getPath();
     }
 
-    public void saveProfiles(List<User> profiles) {
+    public static void saveProfiles(List<User> profiles) {
 
         String filePathString = folder + File.separator + fileName;
         file = new File(filePathString);
@@ -57,7 +58,7 @@ public class Backup {
         }
     }
 
-    public List<User> loadProfiles() {
+    public static List<User> loadProfiles() {
         List<User> profiles = null;
         User user;
 
@@ -86,7 +87,7 @@ public class Backup {
         return profiles;
     }
 
-    public User loadSelectedProfile() {
+    public static User loadSelectedProfile() {
         User profile;
         String filePathString = folder + File.separator + fileName;
         file = new File(filePathString);

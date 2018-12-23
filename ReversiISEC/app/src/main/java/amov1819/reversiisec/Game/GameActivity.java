@@ -1,15 +1,19 @@
 package amov1819.reversiisec.Game;
 
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
+import amov1819.reversiisec.Profiles.User;
 import amov1819.reversiisec.R;
+import amov1819.reversiisec.Utils.Backup;
 
 public class GameActivity extends AppCompatActivity {
+
+    User userSelected;
+    Board gameBoard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +21,10 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         setTitle(R.string.app_name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        userSelected = Backup.loadSelectedProfile();
+        gameBoard = new Board(this);
+        gameBoard.displayBoard();
     }
 
     @Override

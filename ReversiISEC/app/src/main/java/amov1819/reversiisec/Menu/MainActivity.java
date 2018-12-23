@@ -24,7 +24,6 @@ import amov1819.reversiisec.Utils.Backup;
 public class MainActivity extends AppCompatActivity {
 
     User user;
-    Backup backup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
                 requestPermissions(new String[]{Manifest.permission.CAMERA},1);
         }
 
-        backup = new Backup();
+        Backup.makeFolder();
     }
 
     public void onSinglePlayer(View view) {
         Intent intent;
-        user = backup.loadSelectedProfile();
+        user = Backup.loadSelectedProfile();
 
         if(user == null) {
             intent = new Intent(this, ProfileActivity.class);
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onMultiPlayer(View view) {
         Intent intent;
-        user = backup.loadSelectedProfile();
+        user = Backup.loadSelectedProfile();
 
         if(user == null) {
             intent = new Intent(this, ProfileActivity.class);

@@ -28,7 +28,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     private List<User> list;
     private ListView lv;
-    private Backup backup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +35,7 @@ public class ProfileActivity extends AppCompatActivity {
         setTitle(R.string.profiles);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        backup = new Backup();
-        list = backup.loadProfiles();
+        list = Backup.loadProfiles();
 
         if(list.isEmpty()){
             findViewById(R.id.tvNoProfiles).setVisibility(View.VISIBLE);
@@ -150,7 +148,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        backup.saveProfiles(list);
+        Backup.saveProfiles(list);
         super.onStop();
     }
 

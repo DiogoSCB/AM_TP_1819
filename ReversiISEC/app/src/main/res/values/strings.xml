@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Reversi</string>
     <string name="action_settings">Settings</string>
@@ -13,4 +14,8 @@
     <string name="local">Local</string>
     <string name="noProfiles">There are no profiles.</string>
     <string name="insertName">Name:</string>
+    <string name="made_by">Made by: Diogo Branco and João Oliveira</string>
+    <string name="teacher">Teacher: Álvaro Santos</string>
+    <string name="isec">ISEC - Mobile Applications 2018/2019</string>
+    <string name="enter_your_name">Enter your name.</string>
 </resources>
